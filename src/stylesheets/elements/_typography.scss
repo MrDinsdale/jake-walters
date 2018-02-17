@@ -1,0 +1,29 @@
+body {
+  font-family: 'EB Garamond', serif;
+  font-size: $base-font-size;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'EB Garamond', serif;
+  font-size: $base-font-size;
+}
+
+p {
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+strong {
+  font-weight: 600;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}

@@ -1,0 +1,13 @@
+.c-navigation {
+  &__item {
+    color: color(grey-mid);
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+
+    &:hover {
+      color: color(grey-dark);
+      cursor: pointer;
+    }
+  }
+}
