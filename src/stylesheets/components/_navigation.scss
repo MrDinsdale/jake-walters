@@ -1,13 +1,29 @@
 .c-navigation {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  position: relative;
+
   &__item {
     color: color(grey-mid);
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: $font-ui;
     font-size: 12px;
-    line-height: 14px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    line-height: 1.2em;
 
     &:hover {
       color: color(grey-dark);
       cursor: pointer;
     }
+  }
+
+  &::after {
+    background-color: color(grey-mid);
+    bottom: 0;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 10px;
   }
 }
