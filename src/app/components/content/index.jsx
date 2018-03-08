@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Overview from './sections/overview';
+import Motion from './sections/motion';
 import Bio from './sections/bio';
 import Contact from './sections/contact';
 
@@ -11,6 +12,7 @@ class Content extends React.Component {
             <div className="c-content">
                 <Switch>
                     <Route exact path='/' component={Overview}/>
+                    <Route path='/motion' component={Motion}/>
                     <Route path='/bio' component={Bio}/>
                     <Route path='/contact' component={Contact}/>
                 </Switch>

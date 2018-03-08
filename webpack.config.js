@@ -16,7 +16,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
@@ -54,5 +54,8 @@ module.exports = {
       filename: "./index.html"
     }),
     extractPlugin
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  },
 };
