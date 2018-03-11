@@ -8,15 +8,9 @@
 .sass-cache
 .cache
 .tmp
-.env
 
 # Ignore .DS_store file
 .DS_Store
-
-# Ignore bundler binaries
-/bin/*
-!/bin/lint
-!/bin/start
 
 # OS
 ._*
@@ -31,8 +25,8 @@
 ehthumbs.db
 
 # project
-middleman.log
-vendor/bundle
 node_modules
 build
 dist
+*yarn-error.log
+.env

@@ -1,51 +1,76 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
-import ImageControl from './image-control';
+import { withRouter } from 'react-router';
+import indexToWord from '../utils/index-to-word';
 
 class Sidebar extends React.Component {
-    renderNestedNavigation(items, parentName, parentPath) {
+    renderPortfolio() {
+        const { portfolio } = this.props.content.content;
+
         return (
             <li>
-                <NavLink to={ parentPath } className="c-navigation__item has-sub-nav">{ parentName }</NavLink>
+                <NavLink to="/portfolio" className="c-navigation__item">{portfolio.title}</NavLink>
                 <ul>
                     {
-                        items.map((item, index) => (
-                            <li>{ item.name }</li>
-                        ))
+                        portfolio.portfolios.map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <NavLink to={`/portfolio/${item.fields.slug}`} className="c-navigation__item c-navigation__item--sub">{item.fields.title}</NavLink>
+                                </li>
+                            )
+                        })
                     }
                 </ul>
             </li>
-        )
+        );
+    }
+
+    renderVideo() {
+        const { video } = this.props.content.content;
+
+        return (
+            <li>
+                <NavLink to="/motion" className="c-navigation__item">{video.title}</NavLink>
+                <ul>
+                    {
+                        video.videos.map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <NavLink to={`/motion/${item.fields.slug}`} className="c-navigation__item c-navigation__item--sub">{indexToWord(index)}</NavLink>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </li>
+        );
     }
 
     render() {
-        console.log(this.props.contentData);
-        const { portfolios, videos} = this.props.contentData.content;
+        const { overview, portfolio, video } = this.props.content.content;
+
         return (
             <div className="c-sidebar">
                 <nav className="c-navigation">
                     <ul>
-                        <li><NavLink exact to='/' className="c-navigation__item">overview</NavLink></li>
-                        { this.renderNestedNavigation(portfolios, 'portfolio', '/portfolio') }
-                        <li>
-                            <NavLink to="/motion" className="c-navigation__item">motion</NavLink>
-                        </li>
+                        <li><NavLink exact to='/' className="c-navigation__item">{ overview.title }</NavLink></li>
+                        { this.renderPortfolio() }
+                        { this.renderVideo() }
                         <li><NavLink to="/bio" className="c-navigation__item">bio</NavLink></li>
                         <li><NavLink to="/contact" className="c-navigation__item">contact</NavLink></li>
                     </ul>
                 </nav>
-                <ImageControl />
             </div>
         );
     }
 }
 
-function mapStateToProps({ content }) {
+function mapStateToProps({ routing, content }) {
     return {
-        contentData: content
+        routing,
+        content
     };
 }
 
-export default connect(mapStateToProps)(Sidebar);
+export default withRouter(connect(mapStateToProps)(Sidebar));

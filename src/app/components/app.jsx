@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import Header from './header';
 import Sidebar from './sidebar';
@@ -14,16 +15,26 @@ class App extends React.Component {
 
     componentDidMount() {
         this.props.contentActions.getContentTypes();
-        // this.props.contentActions.getOverviewContent();
-        // this.props.contentActions.getPortfolioContent();
-        // this.props.contentActions.getVideoContent();
     }
 
     render() {
+        const { overview, portfolio, video } = this.props.contentData.content;
+
         return (
             <div>
                 <Header />
-
+                {
+                    ( overview && portfolio && video ) ? (
+                        <main>
+                            <Sidebar />
+                            <Content />
+                        </main>
+                    ) : (
+                        <main>
+                            <h1>Content is loading</h1>
+                        </main>
+                    )
+                }
             </div>
         );
     }
@@ -41,4 +52,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
