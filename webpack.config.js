@@ -1,10 +1,10 @@
 const path = require("path");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const DotenvPlugin = require('webpack-dotenv-plugin');
+const DotenvPlugin = require("webpack-dotenv-plugin");
 
 const extractPlugin = new ExtractTextPlugin({
-  filename: './stylesheets/app.css'
+  filename: "./stylesheets/app.css"
 });
 
 module.exports = {
@@ -34,20 +34,20 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         include: [
-          path.resolve(__dirname, './node_modules'),
-          path.resolve(__dirname, 'src', 'stylesheets')
+          path.resolve(__dirname, "./node_modules"),
+          path.resolve(__dirname, "src", "stylesheets")
         ],
         use: extractPlugin.extract({
-          use: ['css-loader', 'sass-loader']
+          use: ["css-loader", "sass-loader"]
         })
       }
     ]
   },
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [".js", ".jsx"]
   },
   plugins: [
     new HtmlWebPackPlugin({
@@ -55,12 +55,12 @@ module.exports = {
       filename: "./index.html"
     }),
     new DotenvPlugin({
-      sample: './.env.sample',
-      path: './.env'
+      sample: "./.env.sample",
+      path: "./.env"
     }),
     extractPlugin
   ],
   node: {
-    fs: 'empty'
-  },
+    fs: "empty"
+  }
 };

@@ -12,15 +12,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class AppWrapper extends React.Component {
-    render () {
-        return (
-            <Provider store={store}>
-                <ConnectedRouter history={history}>
-                    <App />
-                </ConnectedRouter>
-            </Provider>
-        );
-    }
+  render() {
+    return (
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
+      </Provider>
+    );
+  }
 }
 
 if (module.hot) {
@@ -30,4 +30,4 @@ if (module.hot) {
   })
 }
 
-render(<AppWrapper/>, document.getElementById('app'));
+render(<AppWrapper />, document.getElementById('app'));

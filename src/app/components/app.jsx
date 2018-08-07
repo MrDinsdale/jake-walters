@@ -9,47 +9,47 @@ import Content from './content';
 import contentCreator from '../actions';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    componentDidMount() {
-        this.props.contentActions.getContentTypes();
-    }
+  componentDidMount() {
+    this.props.contentActions.getContentTypes();
+  }
 
-    render() {
-        const { overview, portfolio, video } = this.props.contentData.content;
+  render() {
+    const { overview, portfolio, video } = this.props.contentData.content;
 
-        return (
-            <div>
-                <Header />
-                {
-                    ( overview && portfolio && video ) ? (
-                        <main>
-                            <Sidebar />
-                            <Content />
-                        </main>
-                    ) : (
-                        <main>
-                            <h1>Content is loading</h1>
-                        </main>
-                    )
-                }
-            </div>
-        );
-    }
+    return (
+      <div>
+        <Header />
+        {
+          (overview && portfolio && video) ? (
+            <main>
+              <Sidebar />
+              <Content />
+            </main>
+          ) : (
+              <main>
+                <h1>Content is loading</h1>
+              </main>
+            )
+        }
+      </div>
+    );
+  }
 }
 
 function mapStateToProps({ content }) {
-    return {
-        contentData: content
-    };
+  return {
+    contentData: content
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        contentActions: contentCreator(dispatch)
-    };
+  return {
+    contentActions: contentCreator(dispatch)
+  };
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
