@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import Header from './header';
 import Sidebar from './sidebar';
@@ -8,37 +9,47 @@ import Content from './content';
 import contentCreator from '../actions';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    componentDidMount() {
-        this.props.contentActions.getContentTypes();
-        // this.props.contentActions.getOverviewContent();
-        // this.props.contentActions.getPortfolioContent();
-        // this.props.contentActions.getVideoContent();
-    }
+  componentDidMount() {
+    this.props.contentActions.getContentTypes();
+  }
 
-    render() {
-        return (
-            <div>
-                <Header />
+  render() {
+    const { overview, portfolio, video } = this.props.contentData.content;
 
-            </div>
-        );
-    }
+    return (
+      <div>
+        <Header />
+        {
+          (overview && portfolio && video) ? (
+            <main>
+              <Sidebar />
+              <Content />
+            </main>
+          ) : (
+              <main>
+                <h1>Content is loading</h1>
+              </main>
+            )
+        }
+      </div>
+    );
+  }
 }
 
 function mapStateToProps({ content }) {
-    return {
-        contentData: content
-    };
+  return {
+    contentData: content
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        contentActions: contentCreator(dispatch)
-    };
+  return {
+    contentActions: contentCreator(dispatch)
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

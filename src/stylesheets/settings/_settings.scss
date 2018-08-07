@@ -3,23 +3,22 @@
 // ==================================================================
 
 $color-map: (
-    black: #111,
-    white: #FFF,
-    grey-dark: #333,
-    grey-mid: #999,
-    grey-light: #AAA
+  black: #111,
+  white: #fff,
+  grey-dark: #333,
+  grey-mid: #999,
+  grey-light: #ddd
 ) !default;
-
 
 // ==================================================================
 //  z-index
 // ==================================================================
 
 $z-index-map: (
-    modal: 100,
-    ui: 50,
-    content: 25,
-    base: 0
+  modal: 100,
+  ui: 50,
+  content: 25,
+  base: 0
 ) !default;
 
 // ==================================================================
@@ -28,6 +27,6 @@ $z-index-map: (
 
 $base-font-size: 10px;
 
-$font-body: 'Playfair Display', serif;
-$font-heading: 'Oswald', sans-serif;
-$font-ui: 'Arimo', sans-serif;
+$font-body: "Playfair Display", serif;
+$font-heading: "Oswald", sans-serif;
+$font-ui: "Arimo", sans-serif;
