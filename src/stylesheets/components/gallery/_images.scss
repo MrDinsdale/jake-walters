@@ -1,0 +1,28 @@
+.slick-slider {
+  height: calc(100vh - 300px);
+}
+
+.slick-list {
+  height: auto !important;
+}
+
+.slick-slide {
+  height: calc(100vh - 300px);
+
+  &[aria-hidden="false"] {
+    opacity: 1 !important;
+  }
+}
+
+.slick-slide img {
+  max-height: calc(100vh - 350px) !important;
+}
+
+
+.slick-prev,
+.slick-next {
+}
+
+.slick-disabled {
+  display: none;
+}
